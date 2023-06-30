@@ -1,20 +1,39 @@
-.body {
+body {
     background: black;
     margin: auto;
     height: 100vh;
 }
+.wrapper{
+    border: 15px solid black;
+    padding: 15px;
+}
 h1 {
-    color: white;
+    color: grey;
+    font-size: 60px;
+    margin-top: 10px;
+    margin-bottom: 35px;
     display: flex;
     justify-content: center;
 }
-form {
+ul {
+    padding: 0;
+    margin-bottom:0;
+}
+ul li {
+    list-style: none;
+    border-bottom: 1px solid black;
+    margin: 5px;
+    padding: 5px;
     display: flex;
-    justify-content: center;
-    color: white;
+    justify-content: space-around;
+}
+input {
+    border: 1px black solid; 
+    width: 50%;
 }
 .wrapper {
     margin: auto;
-    background: black;
-
+    background: white;
+    height: 500px;
+    width: 75%;
 }

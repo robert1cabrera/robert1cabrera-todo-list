@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 
 
-export default function Todo(props) {
-    const [showDelete, setShowDelete] = useState(false);
+// export default function Todo(props) {
+//     const [showDelete, setShowDelete] = useState(false);
     
-    const { todo } = props;
+//     const { todo } = props;
 
-    return (
-        <li
-            onMouseEnter={() => setShowDelete(true)}
-            onMouseLeave={() => setShowDelete(false)}
-        >
-            <span>{todo}</span>
+//     return (
+//         <li
+//             onMouseEnter={() => setShowDelete(true)}
+//             onMouseLeave={() => setShowDelete(false)}
+//         >
+//             <span>{todo}</span>
 
-            {showDelete && (
-                <span>X</span>
-            )}
-        </li>
-    )
-}
+//             {showDelete && (
+//                 <span>X</span>
+//             )}
+//         </li>
+//     )
+// }
