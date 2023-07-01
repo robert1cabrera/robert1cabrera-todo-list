@@ -1,17 +1,21 @@
 body {
     background: black;
     margin: auto;
-    height: 100vh;
+    /* height: auto; */
 }
 .wrapper{
     border: 15px solid black;
     padding: 15px;
+    height: 70vh;
+    margin: auto;
+    background: whitesmoke;
+    width: 75%;
 }
 h1 {
     color: grey;
     font-size: 60px;
     margin-top: 10px;
-    margin-bottom: 35px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: center;
 }
@@ -21,19 +25,34 @@ ul {
 }
 ul li {
     list-style: none;
-    border-bottom: 1px solid black;
     margin: 5px;
     padding: 5px;
     display: flex;
     justify-content: space-around;
 }
+
+.todo-list-item {
+    position: relative;
+    border: 1px solid whitesmoke;
+}
+
+.todo-item-text {
+    position: absolute;
+    left: 5px;
+}
+
+.fa-trash-alt {
+    position: absolute;
+    right: 50px;
+}
 input {
-    border: 1px black solid; 
+    border: 1px beige solid ; 
     width: 50%;
 }
-.wrapper {
-    margin: auto;
+.todo-list{
+    border: 1px solid orange;
     background: white;
-    height: 500px;
-    width: 75%;
+    height: 45vh;
+    overflow: scroll;
+    padding: 0 20px;
 }
