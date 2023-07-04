@@ -1,35 +1,49 @@
-// import React, { useState } from "react";
-// import Todo from "./Todo.jsx";
+import React, { useContext, useState } from "react";
+import { Context } from "./context.jsx"
 
-// export default function TodoContainer() {
+export default function TodoContainer() {
+	const [userInput, setUserInput] = useState("");
 
-// const [userInput, setUserInput] = useState(""); 
-// const [todolist, setTodoList] = useState([]);
+    const { todos, setTodos } = useContext(Context);
 
-// const onChangeHandler = (event) => setUserInput(event.target.value);
+    return (
+        <div className="todo-body">
+            <ul className="todo-list">
+                {/* <div className="todo-list"> */}
+                {/* <TodoContainer todoList={todos} /> */}
+                <li>
+                    <input type="text"
+                        value={userInput}
+                        onChange={(e) => setUserInput(e.target.value)}
+                        onKeyUp={(e) => {
+                            if (e.key === "Enter") {
+                                setTodos(todos.concat([userInput]));
+                                setUserInput("");
+                            }
+                        }}
+                        placeholder="what do you need to do?"></input>
+                </li>
+                {todos.map((item, index) => (
+                    <li className="todo-list-item">
+                        {/* <span class="todo-item-text"> */}
+                        {item}{" "}
 
-// const addTodoHandler = (event) => {
-//     if (event.key === 'Enter') {
-//         setTodoList([...todolist, userInput]);
-//         setUserInput("");
-//     }
-// }
+                        {/* <span className="todo-item-icon"> */}
+                        <i
+                            class="fas fa-trash-alt"
+                            onClick={() =>
+                                setTodos(
+                                    todos.filter(
+                                        (t, currentIndex) =>
+                                            index != currentIndex
+                                    )
+                                )
+                            }></i>
 
-// return (
-//     <div>
-//         <form onSubmit={(e) => e.preventDefault()}>
-//             <input 
-//                 value={userInput}
-//                 onChange={onChangeHandler}
-//                 onKeyUp={addTodoHandler}
+                    </li>
 
-//             />
-//         </form>
-
-//         <ul>
-
-//         {todolist.map((todo, index) => <Todo key={index} todo={todo} />)}
-//         </ul>
-//         {/* <div>{todo.length} tasks</div> */}
-//     </div>
-// )}
+                ))}
+                
+            </ul>
+        </div>)
+}

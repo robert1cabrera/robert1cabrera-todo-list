@@ -6,7 +6,7 @@ body {
 .wrapper{
     border: 15px solid black;
     padding: 15px;
-    height: 70vh;
+    height: 750px;
     margin: auto;
     background: whitesmoke;
     width: 75%;
@@ -34,9 +34,17 @@ ul li {
 .todo-list-item {
     position: relative;
     border: 2px solid whitesmoke;
-    padding: 5px;
+    text-align: center;
     display: flex;
     justify-content: space-between;
+    background: #fff;
+    box-shadow:
+    0 1px 1px rgba(0,0,0,0.15),
+    0 10px 0 -5px #eee,
+    0 10px 1px -4px rgba(0,0,0,0.15),
+    0 20px 0 -10px #eee,
+    0 20px 1px -9px rgba(0,0,0,0.15);
+    padding: 30px;
   }
 
 .todo-item-text {
@@ -52,7 +60,7 @@ ul li {
     visibility: visible;
   }
 input {
-    border: 1px beige solid ; 
+    border: 1px black solid ; 
     width: 50%;
     padding: 5px;
 }
@@ -62,7 +70,7 @@ input {
 .todo-list{
     
     background: white;
-    height: 45vh;
+    height: 500px;
     overflow: scroll;
     padding: 0 20px;
 }
