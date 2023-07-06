@@ -8,34 +8,75 @@ export default function ContextProvider(props) {
 
     useEffect(() => {
         console.log("in the context useEffect");
-        fetchTodos();
+        fetchTodosOrInitializaTodos();
     }, []);
+
+    const API_URL = "https://assets.breatheco.de/apis/fake/todos/user/Robert1cabrera";
+
+
+    const updateTodos = async (newTodos) => {
+
+        try {
+
+            setTodos(newTodos)
+            const response = await fetch(API_URL, {
+                method: 'put',
+                body: JSON.stringify(newTodos),
+                headers: { "Content-Type": "application/json" }
+            }).then((res) => res.json())
+        }
+        catch (e) {
+            console.error(e);
+        }
+    }
+
+    const fetchTodosOrInitializaTodos = async () => {
+        try {
+
+            const getResponse = await fetch(API_URL);
+            console.log(`getResponse: `, getResponse);
+
+            if (getResponse.status === 404) {
+
+                const createResponse = await fetch(API_URL, {
+                    method: 'post',
+                    body: JSON.stringify([]),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then((res) => res.json());
+            }
+            else {
+                const data = await getResponse.json();
+                setTodos(data);
+            }
+            console.log(`create response: `, createResponse)
+        }
+        catch (error) {
+
+        }
+    }
     
-     
+    const deleteTodos = async () => {
+        try {
+            const response = await fetch(API_URL, {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+            });
 
-    const addTodos = async () => {
-        const yourTodos = [];
-        const response = await fetch('https://1e2f-147-70-17-49.ngrok-free.app/todos/user/Robert1cabrera', {
-            method: 'post',
-            body: JSON.stringify({ todos: yourTodos }),
-            headers: { "content-Type": "application/json" }
-        }).then((res) => res.json())
-
-        const newTodos = response.todos;
-
-    }
-
-    const fetchTodos = async () => {
-
-        const response = await fetch("https://1e2f-147-70-17-49.ngrok-free.app/todos/user/Robert1cabrera").then((res) => res.json());
-
-        const { todos = [] } = response;
-
-        setTodos(todos);
-    }
+            if (response.ok) {
+                
+                setTodos([]);
+            } else {
+                console.error('Failed to delete todos');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
-        <Context.Provider value={{ todos, setTodos }}>
+        <Context.Provider value={{ todos, setTodos, updateTodos, deleteTodos }}>
             {props.children}
         </Context.Provider>
     )
